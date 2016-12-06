@@ -1,16 +1,25 @@
 import java.io.FileNotFoundException;
+import org.json.simple.parser.ParseException;
 import java.io.IOException;
 
-import org.json.simple.parser.ParseException;
-
-
 public class Main {
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		/*
+		 * Oliyarnyk Olexiy 
+		 * method try catch
+		 */
+		JSON_Parser search = new JSON_Parser ();
+		
+		try {
+			search.parseJson();
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (ParseException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
