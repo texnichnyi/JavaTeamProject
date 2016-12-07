@@ -51,7 +51,26 @@ public class Students implements Comparable<Students> {
 	public void setAge(int age){
 		this.age = age;
 	
-	}
+	}public static Comparator<Students> StudentsComparator = new Comparator<Students>(){
+  public int compare(Students obj1, Students obj2){
+        Students stud1 = (Students)obj1;
+         Students stud2 = (Students)obj2;
+         
+         int result = stud1.getSurname().compareTo(stud2.getSurname()); 
+         if (result != 0) return (int)(result/Math.abs(result));
+         result = Integer.compare(stud1.getCourse(),stud2.getCourse()); 
+        if (result != 0) return (int)(result/Math.abs(result));
+         result = Integer.compare(stud1.getAge(),stud2.getAge());
+        return (result != 0) ? (int)(result/Math.abs(result)) : 0;
+  }
+ };
+ 
+ public void setElements(List<Students> list){
+  Collections.sort(list, Students.StudentsComparator);
+  for(Students st:list){
+   System.out.println(String.format("Студент %s вчиться на %d курсі і має %d років", st.surname,st.course,st.age));
+  }
+ }
 
 	public void setElements(List<Students> students) {
 		JSONParser parser = new JSONParser();
