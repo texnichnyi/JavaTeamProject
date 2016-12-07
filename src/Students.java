@@ -1,6 +1,11 @@
+import java.io.FileReader;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -45,10 +50,18 @@ public class Students implements Comparable<Students> {
 	}
 	public void setAge(int age){
 		this.age = age;
-	}
-
-	
 	
 	}
 
+	public void setElements(List<Students> students) {
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(new FileReader("students.json"));
+		JSONObject jsonObject = (JSONObject) obj;
+		JSONArray pItem = (JSONArray)jsonObject.get("студенти");
+		
+		for(int i = 0; i<pItem.size(); i++){
+			students.add(i, pItem.get(i).getSurname()+ ' ' + pItem.get(i).getCourse() + ' ' + pItem.get(i).getCourse());
+			}
+	}
+}
 
